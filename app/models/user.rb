@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
-  has_many :forums, :conversations, :posts
+  has_many :forums
+  has_many :conversations
+  has_many :posts
   attr_accessible :email, :password, :password_confirmation
   
   has_secure_password

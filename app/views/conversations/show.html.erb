@@ -1,0 +1,21 @@
+<h2>Conversation - <%= @conversation.title %></h2>
+
+<div class="post-list">
+  <% for post in @conversation.posts.all(:order => 'created_at DESC') do %>
+    <div class="row">
+      <div class="two columns">
+        <%= time_ago_in_words(post.created_at) %>
+      </div>
+      <div class="ten columns">
+        <% if post.parent %>
+          <blockquote>
+            <%= post.parent.content %>
+          </blockquote>
+        <% end %>
+        <%= post.content %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "Reply", new_forum_conversation_post_path(@conversation.forum, @conversation) %>

@@ -1,0 +1,18 @@
+<h2>Forum - <%= @forum.name %></h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for conversation in @forum.conversations do %>
+      <tr>
+        <td><%= conversation.id %></td>
+        <td><%= link_to conversation.title, forum_conversation_path(conversation) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

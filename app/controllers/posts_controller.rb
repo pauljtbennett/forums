@@ -32,6 +32,10 @@ class PostsController < ApplicationController
     @post.conversation = @conversation
     @post.user = current_user
 
+    if (params[:parent])
+      @post.parent = Post.find(params[:parent])
+    end
+
     if @post.save
       redirect_to forum_conversation_path(@conversation.forum, @conversation)
     else

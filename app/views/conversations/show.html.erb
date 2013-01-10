@@ -14,7 +14,8 @@
             <%= post.parent.content %>
           </blockquote>
         <% end %>
-        <%= post.content %>
+        <%= simple_format post.content %>
+        <%= link_to "Reply to #{post.user.email}", new_forum_conversation_post_path(@conversation.forum, @conversation, :parent => post) %>
       </div>
     </div>
   <% end %>

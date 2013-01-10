@@ -1,6 +1,6 @@
 <h2>Reply to <%= @conversation.title %></h2>
 
-<%= form_for @post, :url => forum_conversation_posts_path do |f| %>
+<%= form_for @post, :url => forum_conversation_posts_path(:parent => params[:parent]) do |f| %>
   <% if @post.errors.any? %>
     <div class="error_messages">
       <h2>Form is invalid</h2>

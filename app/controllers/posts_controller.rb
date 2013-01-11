@@ -17,7 +17,7 @@ class PostsController < ApplicationController
     @conversation = Conversation.find(params[:conversation_id])
     @post = Post.new
 
-    if (params[:parent])
+    if params[:parent]
       @parent = Post.find(params[:parent])
     end    
 
@@ -36,7 +36,7 @@ class PostsController < ApplicationController
     @post.conversation = @conversation
     @post.user = current_user
 
-    if (params[:parent])
+    if params[:parent]
       @post.parent = Post.find(params[:parent])
     end
 

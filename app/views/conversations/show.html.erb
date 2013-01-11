@@ -1,12 +1,14 @@
 <h2>Conversation - <%= @conversation.title %></h2>
 
 <div class="post-list">
-  <% for post in @conversation.posts.all(:order => 'created_at DESC') do %>
+  <% for post in @conversation.posts do %>
     <div class="row">
       <div class="two columns">
         <%= time_ago_in_words(post.created_at) %>
-        <%= post.user.email %>
-        <%= image_tag avatar_url(post.user) %>
+        <%= post.user.username %>
+        <div>
+          <%= image_tag avatar_url(post.user) %>
+        </div>
       </div>
       <div class="ten columns">
         <% if post.parent %>
@@ -15,7 +17,7 @@
           </blockquote>
         <% end %>
         <%= simple_format post.content %>
-        <%= link_to "Reply to #{post.user.email}", new_forum_conversation_post_path(@conversation.forum, @conversation, :parent => post) %>
+        <%= link_to "Reply to #{post.user.username}", new_forum_conversation_post_path(@conversation.forum, @conversation, :parent => post) %>
       </div>
     </div>
   <% end %>

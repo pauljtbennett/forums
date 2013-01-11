@@ -25,6 +25,11 @@
 </head>
 <body>
   <div class="row">
+    <% if current_user %>
+      <div class="twelve columns">
+        Welcome back <%= current_user.username %>
+      </div>
+    <% end %>
     <div class="twelve columns">
       <% if flash[:notice] %>
         <p class="notice"><%= flash[:notice] %></p>

@@ -24,20 +24,36 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="row">
-    <% if current_user %>
+  <% if current_user %>
+    <div class="row">
       <div class="twelve columns">
         Welcome back <%= current_user.username %>
       </div>
-    <% end %>
+    </div>
+  <% end %>
+  <div class="row">
     <div class="twelve columns">
       <% if flash[:notice] %>
-        <p class="notice"><%= flash[:notice] %></p>
+        <div class="alert-box">
+          <%= flash[:notice] %>
+          <a href="" class="close">&times;</a>
+        </div>
       <% end %>
+      <% if flash[:alert] %>
+        <div class="alert-box alert">
+          <%= flash[:alert] %>
+          <a href="" class="close">&times;</a>
+        </div>
+      <% end %>      
       <% if flash[:error] %>
-        <p class="error"><%= flash[:error] %></p>
+        <div class="alert-box alert">
+          <%= flash[:error] %>
+          <a href="" class="close">&times;</a>
+        </div>
       <% end %>
     </div>
+  </div>
+  <div class="row">
     <div class="twelve columns">
       <%= yield %>
     </div>

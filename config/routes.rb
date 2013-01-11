@@ -1,5 +1,7 @@
 Forums::Application.routes.draw do
 
+  get "password_resets/new"
+
   namespace :admin do
     resources :sites, :users, :forums, :conversations, :posts
   end
@@ -10,7 +12,15 @@ Forums::Application.routes.draw do
     end
   end
 
-  resources :users, :sessions
+  get "logout" => "sessions#destroy", :as => "logout"
+  get "login" => "sessions#new", :as => "login"
+  get "signup" => "users#new", :as => "signup"
+  
+  root :to => "home#index"
+  
+  resources :users
+  resources :sessions
+  resources :password_resets
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

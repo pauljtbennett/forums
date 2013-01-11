@@ -1,0 +1,27 @@
+<h2>Start new conversation in <%= @forum.name %></h2>
+
+<%= form_for @conversation, :url => forum_conversations_path do |f| %>
+  <% if @conversation.errors.any? %>
+    <div class="error_messages">
+      <h2>Form is invalid</h2>
+      <ul>
+        <% for message in @conversation.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <%= fields_for :post do |post_fields| %>
+    <div class="field">
+      <%= post_fields.label :content %>
+      <%= post_fields.text_area :content %>
+    </div>
+  <% end %>
+  <div class="actions"><%= f.submit %></div>
+<% end %>
+
+<%= link_to "Back to forum", forum_path(@forum) %>

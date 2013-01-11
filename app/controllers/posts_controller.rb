@@ -17,6 +17,10 @@ class PostsController < ApplicationController
     @conversation = Conversation.find(params[:conversation_id])
     @post = Post.new
 
+    if (params[:parent])
+      @parent = Post.find(params[:parent])
+    end    
+
     respond_with @post
   end
 

@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
 
   def require_user
     unless current_user
-      redirect_to new_session_path and return
+      redirect_to new_session_path(:from => request.fullpath) and return
     end
   end
 

@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   respond_to :html, :json, :xml
+  before_filter :require_user, :only => [:new, :create]
 
   def index
     @posts = Post.find_all_by_conversation_id(params[:conversation_id])
